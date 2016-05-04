@@ -3,6 +3,7 @@ package com.kokushiseiya.tree;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -63,7 +64,7 @@ public class DataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
         if (convertView == null) {
@@ -85,7 +86,9 @@ public class DataAdapter extends BaseAdapter {
         viewHolder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.class, NewActivity.class);
+                startAtctivity(intent);
+                intent.putExtra("position",position);
             }
         });
         viewHolder.closeButton.setOnClickListener(new View.OnClickListener() {

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 
-public class VerticalFragment extends Fragment {
+public class VerticalFragment extends Fragment implements View.OnClickListener{
 
     private ListView listView;
     private DataAdapter adapter;
@@ -27,12 +29,20 @@ public class VerticalFragment extends Fragment {
         listView = (ListView) getActivity().findViewById(R.id.listView);
         adapter = new DataAdapter(getActivity(), ideas);
         listView.setAdapter(adapter);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_vertical, container, false);
     }
+
+    @Override
+    public void onClick(View v) {
+        // 押下時の処理
+        Log.d("fukai", "fukai");
+    }
+
 
 
     private void setData() {
