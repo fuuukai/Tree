@@ -18,9 +18,9 @@ public class HorizontalFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_holizontal);
+        setContentView(R.layout.fragment_blank);
 
-        coverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
+        coverFlow = (FeatureCoverFlow)findViewById(R.id.coverflow);
 
         settingDummyData();
         adapter = new DataAdapter(this, ideas);
