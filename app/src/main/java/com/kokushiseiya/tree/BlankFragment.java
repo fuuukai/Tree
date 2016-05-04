@@ -21,9 +21,12 @@ public class BlankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        coverFlow = (FeatureCoverFlow)findViewById(R.id.coverflow);
 
-        coverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
-        settingDummyData();
+
+        ideas = new ArrayList<>();
+        ideas.setAdapter(ideas);
+
         adapter = new DataAdapter(this, ideas);
         coverFlow.setAdapter(adapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
