@@ -15,13 +15,13 @@ import java.util.ArrayList;
 /**
  * Created by fukai on 16/05/04.
  */
-public class CoverFlowAdapter extends BaseAdapter {
+public class DataAdapter extends BaseAdapter {
 
 
-    private ArrayList<Game> data;
+    private ArrayList<Idea> data;
     private AppCompatActivity activity;
 
-    public CoverFlowAdapter(AppCompatActivity context, ArrayList<Game> objects) {
+    public DataAdapter(AppCompatActivity context, ArrayList<Idea> objects) {
         this.activity = context;
         this.data = objects;
     }
@@ -32,7 +32,7 @@ public class CoverFlowAdapter extends BaseAdapter {
     }
 
     @Override
-    public Game getItem(int position) {
+    public Idea getItem(int position) {
         return data.get(position);
     }
 
@@ -56,6 +56,7 @@ public class CoverFlowAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+
         viewHolder.gameImage.setImageResource(data.get(position).getImageSource());
         viewHolder.gameName.setText(data.get(position).getName());
 
@@ -72,7 +73,7 @@ public class CoverFlowAdapter extends BaseAdapter {
                 final Dialog dialog = new Dialog(activity);
                 dialog.setContentView(R.layout.dialog_game_info);
                 dialog.setCancelable(true); // dimiss when touching outside
-                dialog.setTitle("Game Details");
+                dialog.setTitle("Idea Details");
 
                 TextView text = (TextView) dialog.findViewById(R.id.name);
                 text.setText(getItem(position).getName());
@@ -86,11 +87,14 @@ public class CoverFlowAdapter extends BaseAdapter {
 
 
     private static class ViewHolder {
+
+
+
         private TextView gameName;
         private ImageView gameImage;
 
         public ViewHolder(View v) {
-            gameImage = (ImageView) v.findViewById(R.id.image);
+            gameImage = (User) v.findViewById(R.id.image);
             gameName = (TextView) v.findViewById(R.id.name);
         }
     }

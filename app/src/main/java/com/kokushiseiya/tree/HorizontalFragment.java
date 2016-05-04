@@ -1,5 +1,6 @@
 package com.kokushiseiya.tree;
 
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,21 +9,21 @@ import java.util.ArrayList;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
-public class HorizontalFragment extends AppCompatActivity {
+public class HorizontalFragment extends Fragment {
 
     private FeatureCoverFlow coverFlow;
-    private CoverFlowAdapter adapter;
-    private ArrayList<Game> games;
+    private DataAdapter adapter;
+    private ArrayList<Idea> ideas;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_holizontal);
 
         coverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
 
         settingDummyData();
-        adapter = new CoverFlowAdapter(this, games);
+        adapter = new DataAdapter(this, ideas);
         coverFlow.setAdapter(adapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
     }
@@ -42,17 +43,9 @@ public class HorizontalFragment extends AppCompatActivity {
     }
 
     private void settingDummyData() {
-        games = new ArrayList<>();
-        games.add(new Game(R.mipmap.aaa, "Assassin Creed 3"));
-        games.add(new Game(R.mipmap.bbb, "Avatar 3D"));
-        games.add(new Game(R.mipmap.ccc, "Call Of Duty Black Ops 3"));
-        games.add(new Game(R.mipmap.ddd, "DotA 2"));
-//        games.add(new Game(R.mipmap.halo_5, "Halo 5"));
-//        games.add(new Game(R.mipmap.left_4_dead_2, "Left 4 Dead 2"));
-//        games.add(new Game(R.mipmap.starcraft, "StarCraft"));
-//        games.add(new Game(R.mipmap.the_witcher_3, "The Witcher 3"));
-//        games.add(new Game(R.mipmap.tomb_raider, "Tom raider 3"));
-//        games.add(new Game(R.mipmap.need_for_speed_most_wanted, "Need for Speed Most Wanted"));
+        ideas = new ArrayList<>();
+
+
     }
 }
 
