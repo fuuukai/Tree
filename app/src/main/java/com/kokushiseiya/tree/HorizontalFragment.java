@@ -1,10 +1,7 @@
 package com.kokushiseiya.tree;
 
-import android.content.Context;
-import android.net.Uri;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,54 +11,45 @@ import java.util.ArrayList;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
-
+/**
+ * Created by kokushiseiya on 16/05/04.
+ */
 public class HorizontalFragment extends Fragment {
 
-    private FeatureCoverFlow ideaFlow;
+    private FeatureCoverFlow coverFlow;
     private DataAdapter adapter;
-    private ArrayList<Idea> ideas;
+    private ArrayList<Idea> data;
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        settingDummyData();
-        ideaFlow = (FeatureCoverFlow)getActivity().findViewById(R.id.ideaflow);
-        adapter = new DataAdapter(getActivity(), ideas);
-        ideaFlow.setAdapter(adapter);
-        ideaFlow.setOnScrollPositionListener(onScrollListener());
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance)  {
+        return inflater.inflate(R.layout.fragment_horizontal, container, false);
     }
 
-    private FeatureCoverFlow.OnScrollPositionListener onScrollListener() {
-        return new FeatureCoverFlow.OnScrollPositionListener() {
+    @Override
+    public  void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setData();
+        adapter = new DataAdapter(getActivity(), data);
+        coverFlow = (FeatureCoverFlow) getActivity().findViewById(R.id.coverflow);
+        coverFlow.setAdapter(adapter);
+        coverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-            Log.v("MainActiivty", "position: " + position);
+                Log.v("MainActiivty", "position: " + position);
             }
 
             @Override
             public void onScrolling() {
-            Log.i("MainActivity", "scrolling");
+                Log.i("MainActivity", "scrolling");
             }
-        };
+        });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_horizontal, container, false);
-    }
-
-    private void settingDummyData() {
-        User user1 = new User("fukai");
-        User user2 = new User("ronn");
-        User user3 = new User("kuroko");
-        User user4 = new User("ziaru");
-
-        ideas = new ArrayList<>();
-        ideas.add(new Idea(user1, "hellow world", 4, false));
-        ideas.add(new Idea(user2, "hellow world!", 4, false));
-        ideas.add(new Idea(user3, "hellow world", 4, false));
-        ideas.add(new Idea(user4, "hellow world!", 4, false));
+    public void setData() {
+        User user1 = new User("ronnnnn");
+        data = new ArrayList<>();
+        data.add(new Idea(user1, "hogehoge", 0, true));
+        data.add(new Idea(user1, "fugefuge", 0, true));
     }
 }

@@ -1,56 +1,54 @@
 package com.kokushiseiya.tree;
 
-import android.app.Fragment;
-import android.content.pm.FeatureGroupInfo;
+import android.app.Activity;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
-/**
- * Created by kokushiseiya on 16/05/04.
- */
+
 public class VerticalFragment extends Fragment {
 
-    private FeatureCoverFlow coverFlow;
+    private ListView listView;
     private DataAdapter adapter;
-    private ArrayList<Idea> data;
-
+    private ArrayList<Idea> ideas;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance)  {
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setData();
+        listView = (ListView) getActivity().findViewById(R.id.listView);
+        adapter = new DataAdapter(getActivity(), ideas);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_vertical, container, false);
     }
 
-    @Override
-    public  void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setData();
-        adapter = new DataAdapter(getActivity(), data);
-        coverFlow = (FeatureCoverFlow) getActivity().findViewById(R.id.coverflow);
-        coverFlow.setAdapter(adapter);
-        coverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
-            @Override
-            public void onScrolledToPosition(int position) {
-                Log.v("MainActiivty", "position: " + position);
-            }
 
-            @Override
-            public void onScrolling() {
-                Log.i("MainActivity", "scrolling");
-            }
-        });
-    }
+    private void setData() {
+        User user1 = new User("fukai");
+        User user2 = new User("ronn");
+        User user3 = new User("kuroko");
+        User user4 = new User("ziaru");
 
-    public void setData() {
-        User user1 = new User("ronnnnn");
-        data = new ArrayList<>();
-        data.add(new Idea(user1, "hogehoge", 0, true));
-        data.add(new Idea(user1, "fugefuge", 0, true));
+        ideas = new ArrayList<>();
+
+        ideas.add(new Idea(user1, "hellow world", 4, false));
+        ideas.add(new Idea(user2, "hellow world!", 4, false));
+        ideas.add(new Idea(user3, "hellow world", 4, false));
+        ideas.add(new Idea(user4, "hellow world!", 4, false));
+        ideas.add(new Idea(user4, "hellow world!", 4, false));
+        ideas.add(new Idea(user4, "hellow world!", 4, false));
+
     }
 }
