@@ -26,8 +26,8 @@ public class HorizontalFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         settingDummyData();
-        ideaFlow = (FeatureCoverFlow)findViewById(R.id.ideaflow);
-        adapter = new DataAdapter((AppCompatActivity) getActivity(), ideas);
+        ideaFlow = (FeatureCoverFlow)getActivity().findViewById(R.id.ideaflow);
+        adapter = new DataAdapter(getActivity(), ideas);
         ideaFlow.setAdapter(adapter);
         ideaFlow.setOnScrollPositionListener(onScrollListener());
     }
@@ -49,18 +49,19 @@ public class HorizontalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_horizontal, container, false);
     }
 
     private void settingDummyData() {
+        User user1 = new User("fukai");
+        User user2 = new User("ronn");
+        User user3 = new User("kuroko");
+        User user4 = new User("ziaru");
+
         ideas = new ArrayList<>();
-
-        User user1= new User("fukai");
-
-        ideas.add(new Idea(user1, "hellow world", 4, false);
-        ideas.add(new Idea("ronn", "hellow world!", 4, false);
-        ideas.add(new Idea("kuroko", "hellow world", 4, false);
-        ideas.add(new Idea("zairu", "hellow world!", 4, false);
+        ideas.add(new Idea(user1, "hellow world", 4, false));
+        ideas.add(new Idea(user2, "hellow world!", 4, false));
+        ideas.add(new Idea(user3, "hellow world", 4, false));
+        ideas.add(new Idea(user4, "hellow world!", 4, false));
     }
 }
