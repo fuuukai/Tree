@@ -11,7 +11,7 @@
                 tools:context=".MainActivity">
 
     <it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow
-        android:id="@+id/coverflow"
+        android:id="@+id/ideaflow"
         coverflow:coverHeight="150dp"
         coverflow:coverWidth="100dp"
         coverflow:maxScaleFactor="1.5"
