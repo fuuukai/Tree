@@ -34,22 +34,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-//        // Fragmentの動的追加
-//        android.app.FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        if (horizontalFragment == null) {
-//            horizontalFragment = new HorizontalFragment();
-//        }
-//        fragmentTransaction.replace(R.id.fragment_container, horizontalFragment);
-//        fragmentTransaction.commit();
-
         // Fragmentの動的追加
         android.app.FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (verticalFragment == null) {
-            verticalFragment = new VerticalFragment();
+        if (horizontalFragment == null) {
+            horizontalFragment = new HorizontalFragment();
         }
-        fragmentTransaction.replace(R.id.fragment_container, verticalFragment);
+        fragmentTransaction.replace(R.id.fragment_container, horizontalFragment);
         fragmentTransaction.commit();
+
+//        // Fragmentの動的追加
+//        android.app.FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        if (verticalFragment == null) {
+//            verticalFragment = new VerticalFragment();
+//        }
+//        fragmentTransaction.replace(R.id.fragment_container, verticalFragment);
+//        fragmentTransaction.commit();
     }
 }

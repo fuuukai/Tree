@@ -86,9 +86,9 @@ public class DataAdapter extends BaseAdapter {
         viewHolder.likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.class, NewActivity.class);
-                startAtctivity(intent);
-                intent.putExtra("position",position);
+//                Intent intent = new Intent(MainActivity.class, NewActivity.class);
+//                startAtctivity(intent);
+//                intent.putExtra("position",position);
             }
         });
         viewHolder.closeButton.setOnClickListener(new View.OnClickListener() {
