@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -28,28 +29,58 @@ public class MainActivity extends AppCompatActivity {
         // Loginで設定したuser情報を取得
         SharedPreferences data = getSharedPreferences("USERDATA", Context.MODE_PRIVATE);
         userName = data.getString("USERNAME", null);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Fragmentの動的追加
         android.app.FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (horizontalFragment == null) {
-            horizontalFragment = new HorizontalFragment();
+
+        if (verticalFragment == null) {
+            verticalFragment = new VerticalFragment();
         }
-        fragmentTransaction.replace(R.id.fragment_container, horizontalFragment);
+        fragmentTransaction.replace(R.id.fragment_container, verticalFragment);
         fragmentTransaction.commit();
 
-//        // Fragmentの動的追加
-//        android.app.FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        if (verticalFragment == null) {
-//            verticalFragment = new VerticalFragment();
-//        }
-//        fragmentTransaction.replace(R.id.fragment_container, verticalFragment);
-//        fragmentTransaction.commit();
     }
+
+        /**
+         * 画面回転を検出
+         */
+        @Override
+        public void onConfigurationChanged(Configuration newConfig) {
+
+            // Fragmentの動的追加
+            android.app.FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            switch (newConfig.orientation) {
+                case Configuration.ORIENTATION_PORTRAIT:  // 縦長
+
+
+                    if (verticalFragment == null) {
+                        verticalFragment = new VerticalFragment();
+                    }
+                    fragmentTransaction.replace(R.id.fragment_container, verticalFragment);
+                    fragmentTransaction.commit();
+
+                    break;
+                case Configuration.ORIENTATION_LANDSCAPE:  // 横長
+
+                    if (horizontalFragment == null) {
+                        horizontalFragment = new HorizontalFragment();
+                    }
+                    fragmentTransaction.replace(R.id.fragment_container, horizontalFragment);
+                    fragmentTransaction.commit();
+
+                    break;
+                default:
+                    break;
+            }
+            super.onConfigurationChanged(newConfig);
+        }
+
+
+
+
+
+
+
 }
